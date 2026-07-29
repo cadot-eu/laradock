@@ -1,0 +1,33 @@
+#!/bin/bash
+# test-ultimate.sh
+
+cd /var/www/pods/bundles/Scrapper
+
+echo "=== TEST ULTIME ==="
+
+# 1. Vérifier Chrome
+echo "1. Test de Chrome..."
+google-chrome-stable --headless --no-sandbox --disable-gpu --dump-dom https://example.com > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo "✅ Chrome fonctionne"
+else
+    echo "❌ Chrome ne fonctionne pas"
+    google-chrome-stable --headless --no-sandbox --disable-gpu --dump-dom https://example.com 2>&1 | tail -10
+    exit 1
+fi
+
+# 2. Vérifier ChromeDriver
+echo "2. Test de ChromeDriver..."
+./drivers/chromedriver --version
+if [ $? -ne 0 ]; then
+    echo "❌ ChromeDriver ne fonctionne pas"
+    exit 1
+fi
+echo "✅ ChromeDriver fonctionne"
+
+# 3. Lancer le test minimal
+echo "3. Lancement du test minimal..."
+PANTHER_CHROME_BINARY=/usr/bin/google-chrome-stable \
+PANTHER_CHROME_DRIVER_BINARY=$(pwd)/drivers/chromedriver-linux \
+PANTHER_CHROME_ARGUMENTS='--no-sandbox --disable-dev-shm-usage' \
+./vendor/bin/simple-phpunit tests/BrowserTest.php --verbose --filter=testMinimal

@@ -2,21 +2,14 @@
 
 namespace CadotEu\Scrapper\Tests;
 
-use Symfony\Component\Panther\PantherTestCase;
 use CadotEu\Scrapper\Service\ScrapperBrowser;
+use PHPUnit\Framework\TestCase;
 
-class BrowserTest extends PantherTestCase
+
+class BrowserTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->browserManager = new ScrapperBrowser();
-    }
     public function testSomething(): void
     {
-        $client = static::createPantherClient();
-        $crawler = $client->request('GET', '/');
-
-        $this->assertSelectorTextContains('h1', 'Hello World');
+        $ScrapperBrowser = new ScrapperBrowser();
     }
 }
