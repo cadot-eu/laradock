@@ -1,6 +1,0 @@
-services:
-    CadotEu\Scrapper\:
-        resource: '../src/*'
-        autowire: true
-        autoconfigure: true
-        exclude: '../src/{Entity,Exception}'
