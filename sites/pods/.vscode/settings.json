@@ -1,0 +1,32 @@
+{
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true
+    },
+      "files.watcherExclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/var": true // Le cache de Symfony
+},
+"php.files.exclude": [
+    "**/vendor/**","**/var","**/node_modules"
+],
+    "intelephense.diagnostics.undefinedClassConstants": false,
+    "intelephense.diagnostics.undefinedTypes": false,
+    "intelephense.diagnostics.undefinedFunctions": false,
+    "intelephense.diagnostics.undefinedConstants": false,
+    "intelephense.diagnostics.undefinedMethods": false,
+    "intelephense.diagnostics.undefinedProperties": false,
+    "intelephense.completion.triggerParameterHints": false,
+    "intelephense.completion.withMethodBody": true,
+    "intelephense.completion.withOverrideAttribute": true,
+    "intelephense.codeLens.implementations.enable": false,
+    "intelephense.codeLens.overrides.enable": false,
+    "intelephense.codeLens.parent.enable": false,
+    "intelephense.codeLens.references.enable": false,
+    "intelephense.codeLens.usages.enable": false,
+    "intelephense.compatibility.preferPsalmPhpstanPrefixedAnnotations": false,
+    "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": false,
+    "intelephense.completion.suggestObjectOperatorStaticMethods": true,
+    "intelephense.diagnostics.argumentCount": "off"
+}

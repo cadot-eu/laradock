@@ -1,0 +1,6 @@
+services:
+    CadotEu\Make\:
+        resource: '../src/*'
+        autowire: true
+        autoconfigure: true
+        exclude: '../src/{Entity,Exception}'

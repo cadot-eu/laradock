@@ -117,7 +117,25 @@ RUN set -xe; \
 #   - INSTALL_NODE=false
 #   - ...
 #
+# laradock/workspace/Dockerfile
 
+# Installation de Google Chrome (version propre sans apt-key)
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    curl \
+    unzip \
+    && curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
+    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installation de ChromeDriver (optionnel, Panther le gère souvent)
+RUN apt-get update && apt-get install -y chromium-driver \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV PANTHER_CHROME_BINARY=/usr/bin/google-chrome-stable
 ###########################################################################
 # Set Timezone
 ###########################################################################
